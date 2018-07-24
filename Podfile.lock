@@ -1,0 +1,28 @@
+PODS:
+  - NCMB (2.4.3)
+  - ProgressHUD (2.60)
+
+DEPENDENCIES:
+  - NCMB (from `https://github.com/NIFCloud-mbaas/ncmb_ios.git`)
+  - ProgressHUD
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - ProgressHUD
+
+EXTERNAL SOURCES:
+  NCMB:
+    :git: https://github.com/NIFCloud-mbaas/ncmb_ios.git
+
+CHECKOUT OPTIONS:
+  NCMB:
+    :commit: ff4c625eaa4d0789d03ad90ed572f7bfad8691e4
+    :git: https://github.com/NIFCloud-mbaas/ncmb_ios.git
+
+SPEC CHECKSUMS:
+  NCMB: 7b88a86be4a770bd260f42295c7649b00f57f178
+  ProgressHUD: 4e4efbaf4f5de8bd32e0c4c3b6644a90ea1a8c3e
+
+PODFILE CHECKSUM: 784e09e083884bded2fc378ddffd19b3375ef0ae
+
+COCOAPODS: 1.5.3
