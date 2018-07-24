@@ -37,7 +37,7 @@
     [tabBarItem3 setTitlePositionAdjustment:UIOffsetMake(0, -16)];
     
     // APIキーの設定とSDK初期化
-    [NCMB setApplicationKey:@"37c2656cec23a3572b2b8c4820b5fd100c0af7e7d37be0fb25a9b9bec966155a" clientKey:@"27cb351975620ca27366328eeb9e31500bfd6f0429f0f2fd4db3a2759d9565ac"];
+    [NCMB setApplicationKey:@"「YOUR_NCMB_APPLICATION_KEY」" clientKey:@"「YOUR_NCMB_CLIENT_KEY」"];
     
     return YES;
 }
