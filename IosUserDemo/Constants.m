@@ -25,6 +25,7 @@ NSString * const LOADING_TITLE = @"Please wait...";
 
 NSString * const LOGIN_SUCCESS = @"【ID/PW認証】ログイン成功:";
 NSString * const ID_PW_REGISTRATION_FAILURE = @"【ID / PW 認証】新規登録失敗:";
+NSString * const ID_PW_LOGIN_FAILURE = @"【ID / PW 認証】ログイン失敗:";
 
 NSString * const EMAIL_PW_REGISTRATION_COMPLETE = @"【Email/PW認証】新規登録メール配信完了";
 NSString * const MESSAGE_RESPONSE_REGISTRATION_COMPLETE = @"届いたメールに記載されているURLにアクセスし、パスワードを登録してください。";

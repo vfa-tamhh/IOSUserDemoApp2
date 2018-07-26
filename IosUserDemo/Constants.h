@@ -28,6 +28,7 @@ extern NSString * const ID_PW_REGISTRATION_FAILURE;
 extern NSString * const EMAIL_PW_REGISTRATION_COMPLETE;
 extern NSString * const MESSAGE_RESPONSE_REGISTRATION_COMPLETE;
 extern NSString * const EMAIL_PW_REGISTRATION_FAILURE;
+extern NSString * const ID_PW_LOGIN_FAILURE;
 
 extern NSString * const EMAIL_PW_LOGIN_SUCCESS;
 extern NSString * const EMAIL_PW_LOGIN_FAILURE;

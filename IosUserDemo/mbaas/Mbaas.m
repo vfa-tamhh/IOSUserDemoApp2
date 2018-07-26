@@ -43,7 +43,7 @@
                     [self userSuccess:LOGIN_SUCCESS user:user uiviewController:controller];
                 } else {
                     /* 処理失敗 */
-                    [self userError:ID_PW_REGISTRATION_FAILURE error:error uiviewController:controller];
+                    [self userError:ID_PW_LOGIN_FAILURE error:error uiviewController:controller];
                 }
             }];
         } else {
@@ -69,7 +69,7 @@
             [self userSuccess:LOGIN_SUCCESS user:user uiviewController:controller];
         } else {
             /* 処理失敗 */
-            [self userError:ID_PW_REGISTRATION_FAILURE error:error uiviewController:controller];
+            [self userError:ID_PW_LOGIN_FAILURE error:error uiviewController:controller];
         }
     }];
 }
