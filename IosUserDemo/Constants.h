@@ -15,6 +15,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "NCMB/NCMBUser.h"
 
 @interface Constants : NSObject
 extern NSString * const ID_PW_TITLE;
@@ -41,5 +42,8 @@ extern NSString * const LOGGED_OUT;
 extern NSString * const MESSAGE_ERROR_NOT_INPUT;
 extern NSString * const MESSAGE_ERROR_PWD_DO_NOT_MATCH;
 extern NSString * const MESSAGE_ERROR_EMAIL_DO_NOT_INPUT;
+
+typedef void (^callbackUserOk)(NCMBUser *user);
+typedef void (^callbackUserError)(NSError *error);
 
 @end

@@ -18,6 +18,7 @@
 #import "Utils.h"
 #import "Mbaas.h"
 #import "Constants.h"
+#import "NCMB/NCMBUser.h"
 
 @interface FirstViewController ()
 
@@ -36,14 +37,23 @@
     } else if(self.txtSignupPassword.text != self.txtSignupPasswordConfirm.text){
         [Utils showAlertIn:self message:MESSAGE_ERROR_PWD_DO_NOT_MATCH andOKHandler:nil];
     } else {
-        [Mbaas signupByID:self.txtSignupId.text password:self.txtSignupPassword.text uiviewController:self];
+        [Mbaas signupByID:self.txtSignupId.text password:self.txtSignupPassword.text callbackOK:^(NCMBUser *user) {
+            [Mbaas userSuccess:LOGIN_SUCCESS user:user uiviewController:self];
+        } callbackFailure:^(NSError *error){
+            [Mbaas userError:ID_PW_LOGIN_FAILURE error:error uiviewController:self];
+        }];
     }
 }
 - (IBAction)Signin:(id)sender {
     if(![self.txtSigninId hasText] || ![self.txtSigninPassword hasText]){
         [Utils showAlertIn:self message:MESSAGE_ERROR_NOT_INPUT andOKHandler:nil];
     } else {
-        [Mbaas signinByID:self.txtSigninId.text password:self.txtSigninPassword.text uiviewController:self];
+        [Mbaas signinByID:self.txtSigninId.text password:self.txtSigninPassword.text callbackOK:^(NCMBUser *user) {
+            [Mbaas userSuccess:LOGIN_SUCCESS user:user uiviewController:self];
+        } callbackFailure:^(NSError *error) {
+            [Mbaas userError:ID_PW_LOGIN_FAILURE error:error uiviewController:self];
+        }];
+
     }
 }
 

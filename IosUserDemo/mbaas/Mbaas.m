@@ -17,13 +17,14 @@
 #import "Mbaas.h"
 #import "NCMB/NCMBAnonymousUtils.h"
 #import "ProgressHUD.h"
-#import "Constants.h"
+
 
 @implementation Mbaas
 /***** ID/PW認証：新規登録 *****/
-+(void) signupByID:(NSString*)userId
-          password:(NSString*)pwd
-  uiviewController:(UIViewController *)controller{
++(void) signupByID:(NSString*) userId
+          password:(NSString*) pwd
+        callbackOK:(callbackUserOk) callBackOk
+   callbackFailure:(callbackUserError) callBackFailure;{
     //show the progress bar
     [ProgressHUD show:LOADING_TITLE];
     // user インスタンスの生成
@@ -40,24 +41,31 @@
                 [ProgressHUD dismiss];
                 if (!error) {
                     /* 処理成功 */
-                    [self userSuccess:LOGIN_SUCCESS user:user uiviewController:controller];
+                    if (callBackOk) {
+                        callBackOk(user);
+                    }
                 } else {
                     /* 処理失敗 */
-                    [self userError:ID_PW_LOGIN_FAILURE error:error uiviewController:controller];
+                    if (callBackFailure) {
+                        callBackFailure(error);
+                    }
                 }
             }];
         } else {
             //hide the progress bar
             [ProgressHUD dismiss];
             /* 処理失敗 */
-            [self userError:ID_PW_REGISTRATION_FAILURE error:error uiviewController:controller];
+            if (callBackFailure) {
+                callBackFailure(error);
+            }
         }
     }];
 }
 /***** ID/PW認証：ログイン *****/
 +(void) signinByID:(NSString*)userId
           password:(NSString*)pwd
-  uiviewController:(UIViewController *)controller{
+        callbackOK:(callbackUserOk) callBackOk
+   callbackFailure:(callbackUserError) callBackFailure{
     //show the progress bar
     [ProgressHUD show:LOADING_TITLE];
     // ID/PWでログイン
@@ -66,16 +74,21 @@
         [ProgressHUD dismiss];
         if (!error) {
             /* 処理成功 */
-            [self userSuccess:LOGIN_SUCCESS user:user uiviewController:controller];
+            if (callBackOk) {
+                callBackOk(user);
+            }
         } else {
             /* 処理失敗 */
-            [self userError:ID_PW_LOGIN_FAILURE error:error uiviewController:controller];
+            if (callBackFailure) {
+                callBackFailure(error);
+            }
         }
     }];
 }
 /***** Email/PW認証：新規登録 *****/
 +(void) signupByEmail:(NSString*)mailAddress
-     uiviewController:(UIViewController *)controller{
+            calbackOk:(void (^)(void)) callBackOk
+        callbackError:(callbackUserError) callBackError{
     //show the progress bar
     [ProgressHUD show:LOADING_TITLE];
     NSError *error = nil;
@@ -85,33 +98,41 @@
     [ProgressHUD dismiss];
     if (!error) {
         /* 処理成功 */
-        [Utils showAlertIn:controller message:EMAIL_PW_REGISTRATION_COMPLETE andOKHandler:^(){
-            [Utils showAlertIn:controller message:MESSAGE_RESPONSE_REGISTRATION_COMPLETE andOKHandler:^(){
-                [controller loadView];
-            }];
-        }];
+        if (callBackOk) {
+            callBackOk();
+        }
+        
     } else {
         /* 処理失敗 */
-        [self userError:EMAIL_PW_REGISTRATION_FAILURE error:error uiviewController:controller];
+        if (callBackError) {
+            callBackError(error);
+        }
+        
     }
 }
 /***** Email/PW認証：ログイン *****/
 +(void) signinByEmail:(NSString*)mailAddress
              password:(NSString*)pwd
-     uiviewController:(UIViewController *)controller{
+           callbackOK:(callbackUserOk) callBackOk
+      callbackFailure:(callbackUserError) callBackFailure{
     // Email/PWでログイン
     [NCMBUser logInWithMailAddressInBackground:mailAddress password:pwd block:^(NCMBUser *user, NSError *error) {
         if (!error){
             /* 処理成功 */
-            [self userSuccess:EMAIL_PW_LOGIN_SUCCESS user:user uiviewController:controller];
+            if (callBackOk) {
+                callBackOk(user);
+            }
         } else {
             /* 処理失敗 */
-            [self userError:EMAIL_PW_LOGIN_FAILURE error:error uiviewController:controller];
+            if (callBackFailure) {
+                callBackFailure(error);
+            }
         }
     }];
 }
 /***** 匿名認証：ログイン *****/
-+(void) signinByAnonymousID:(UIViewController *)controller{
++(void) signinByAnonymousID:(callbackUserOk) callBackOk
+            callbackFailure:(callbackUserError) callBackFailure{
     //show the progress bar
     [ProgressHUD show:LOADING_TITLE];
     [NCMBAnonymousUtils logInWithBlock:^(NCMBUser *user, NSError *error) {
@@ -119,10 +140,16 @@
         [ProgressHUD dismiss];
         if (!error) {
             /* 処理成功 */
-            [self userSuccess:ANONYMOUS_LOGIN_SUCCESS user:user uiviewController:controller];
+            if (callBackOk) {
+                callBackOk(user);
+            }
+            
         } else {
             /* 処理失敗 */
-            [self userError:ANONYMOUS_LOGIN_FAILURE error:error uiviewController:controller];
+            if (callBackFailure) {
+                callBackFailure(error);
+            }
+            
         }
     }];
 }

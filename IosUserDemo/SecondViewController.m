@@ -28,14 +28,26 @@
     if(![self.txtSignupEmail hasText]){
         [Utils showAlertIn:self message:MESSAGE_ERROR_EMAIL_DO_NOT_INPUT andOKHandler:nil];
     } else {
-        [Mbaas signupByEmail:self.txtSignupEmail.text uiviewController:self];
+        [Mbaas signupByEmail:self.txtSignupEmail.text calbackOk:^{
+            [Utils showAlertIn:self message:EMAIL_PW_REGISTRATION_COMPLETE andOKHandler:^(){
+                [Utils showAlertIn:self message:MESSAGE_RESPONSE_REGISTRATION_COMPLETE andOKHandler:^(){
+                    [self loadView];
+                }];
+            }];
+        } callbackError:^(NSError *error){
+            [Mbaas userError:EMAIL_PW_REGISTRATION_FAILURE error:error uiviewController:self];
+        }];
     }
 }
 - (IBAction)SigninByEmail:(id)sender {
     if(![self.txtSigninEmail hasText] || ![self.txtSigninPassword hasText]){
         [Utils showAlertIn:self message:MESSAGE_ERROR_NOT_INPUT andOKHandler:nil];
     } else {
-        [Mbaas signinByEmail:self.txtSigninEmail.text password:self.txtSigninPassword.text uiviewController:self];
+        [Mbaas signinByEmail:self.txtSigninEmail.text password:self.txtSigninPassword.text callbackOK:^(NCMBUser *user) {
+            [Mbaas userSuccess:EMAIL_PW_LOGIN_SUCCESS user:user uiviewController:self];
+        } callbackFailure:^(NSError *error) {
+            [Mbaas userError:EMAIL_PW_LOGIN_FAILURE error:error uiviewController:self];
+        }];
     }
 }
 

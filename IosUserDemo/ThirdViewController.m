@@ -25,7 +25,11 @@
 
 @implementation ThirdViewController
 - (IBAction)SigninByAnonymousID:(id)sender {
-    [Mbaas signinByAnonymousID:self];
+    [Mbaas signinByAnonymousID:^(NCMBUser *user) {
+        [Mbaas userSuccess:ANONYMOUS_LOGIN_SUCCESS user:user uiviewController:self];
+    } callbackFailure:^(NSError *error) {
+        [Mbaas userError:ANONYMOUS_LOGIN_FAILURE error:error uiviewController:self];
+    }];
 }
 
 - (void)viewDidLoad {

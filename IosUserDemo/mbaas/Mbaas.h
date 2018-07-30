@@ -18,20 +18,27 @@
 #import <UIKit/UIKit.h>
 #import "Utils.h"
 #import "NCMB/NCMBUser.h"
+#import "Constants.h"
 
 @interface Mbaas : NSObject
-+(void) signupByID:(NSString*)userId
-          password:(NSString*)pwd
-  uiviewController:(UIViewController *)controller;
+
++(void) signupByID:(NSString*) userId
+          password:(NSString*) pwd
+        callbackOK:(callbackUserOk) callBackOk
+   callbackFailure:(callbackUserError) callBackFailure;
 +(void) signinByID:(NSString*)userId
           password:(NSString*)pwd
-  uiviewController:(UIViewController *)controller;
+        callbackOK:(callbackUserOk) callBackOk
+   callbackFailure:(callbackUserError) callBackFailure;
 +(void) signupByEmail:(NSString*)mailAddress
-     uiviewController:(UIViewController *)controller;
+            calbackOk:(void (^)(void)) callBackOk
+        callbackError:(callbackUserError) callBackError;
 +(void) signinByEmail:(NSString*)mailAddress
           password:(NSString*)pwd
-  uiviewController:(UIViewController *)controller;
-+(void) signinByAnonymousID:(UIViewController *)controller;
+           callbackOK:(callbackUserOk) callBackOk
+      callbackFailure:(callbackUserError) callBackFailure;
++(void) signinByAnonymousID:(callbackUserOk) callBackOk
+            callbackFailure:(callbackUserError) callBackFailure;
 +(void) logout:(UIViewController *)controller;
 +(void) userSuccess:(NSString*)message
                user:(NCMBUser*) u
