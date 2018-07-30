@@ -30,9 +30,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
 }
 - (IBAction)Signup:(id)sender {
-    if(![self.txtSignupId hasText] || ![self.txtSignupPassword hasText] || ![self.txtSignupPasswordConfirm hasText]){
+    
+    if([Utils isEmptyOrBlank:self.txtSignupId] || [Utils isEmptyOrBlank:self.txtSignupPassword] || [Utils isEmptyOrBlank:self.txtSignupPasswordConfirm]){
         [Utils showAlertIn:self message:MESSAGE_ERROR_NOT_INPUT andOKHandler:nil];
     } else if(self.txtSignupPassword.text != self.txtSignupPasswordConfirm.text){
         [Utils showAlertIn:self message:MESSAGE_ERROR_PWD_DO_NOT_MATCH andOKHandler:nil];
@@ -45,7 +50,8 @@
     }
 }
 - (IBAction)Signin:(id)sender {
-    if(![self.txtSigninId hasText] || ![self.txtSigninPassword hasText]){
+    
+    if([Utils isEmptyOrBlank:self.txtSigninId] || [Utils isEmptyOrBlank:self.txtSigninPassword]){
         [Utils showAlertIn:self message:MESSAGE_ERROR_NOT_INPUT andOKHandler:nil];
     } else {
         [Mbaas signinByID:self.txtSigninId.text password:self.txtSigninPassword.text callbackOK:^(NCMBUser *user) {
@@ -61,6 +67,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)dismissKeyboard {
+    [_txtSignupId resignFirstResponder];
+    [_txtSignupPassword resignFirstResponder];
+    [_txtSignupPasswordConfirm resignFirstResponder];
+    [_txtSigninId resignFirstResponder];
+    [_txtSigninPassword resignFirstResponder];
+}
 
 @end

@@ -34,5 +34,9 @@
     [alertController addAction:yesButton];
     [controller presentViewController:alertController animated:YES completion:nil];
 }
-
++ (BOOL) isEmptyOrBlank:(UITextField*) textField {
+    NSCharacterSet *charSet = [NSCharacterSet whitespaceCharacterSet];
+    NSString *trimmedString = [textField.text stringByTrimmingCharactersInSet:charSet];
+    return [trimmedString isEqualToString:@""];
+}
 @end

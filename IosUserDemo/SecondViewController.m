@@ -25,7 +25,8 @@
 
 @implementation SecondViewController
 - (IBAction)SignupByEmail:(id)sender {
-    if(![self.txtSignupEmail hasText]){
+    
+    if([Utils isEmptyOrBlank:self.txtSignupEmail]){
         [Utils showAlertIn:self message:MESSAGE_ERROR_EMAIL_DO_NOT_INPUT andOKHandler:nil];
     } else {
         [Mbaas signupByEmail:self.txtSignupEmail.text calbackOk:^{
@@ -40,7 +41,8 @@
     }
 }
 - (IBAction)SigninByEmail:(id)sender {
-    if(![self.txtSigninEmail hasText] || ![self.txtSigninPassword hasText]){
+    
+    if([Utils isEmptyOrBlank:self.txtSigninEmail] || [Utils isEmptyOrBlank:self.txtSigninPassword]){
         [Utils showAlertIn:self message:MESSAGE_ERROR_NOT_INPUT andOKHandler:nil];
     } else {
         [Mbaas signinByEmail:self.txtSigninEmail.text password:self.txtSigninPassword.text callbackOK:^(NCMBUser *user) {
@@ -54,6 +56,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
 }
 
 
@@ -62,5 +68,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)dismissKeyboard {
+    [_txtSignupEmail resignFirstResponder];
+    [_txtSigninEmail resignFirstResponder];
+    [_txtSigninPassword resignFirstResponder];
+}
 
 @end

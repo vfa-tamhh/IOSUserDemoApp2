@@ -21,4 +21,5 @@
 + (void)showAlertIn:(UIViewController *)controller
             message:(NSString *)message
        andOKHandler:(void (^)(void))handler;
++ (BOOL) isEmptyOrBlank:(UITextField*) textField;
 @end
