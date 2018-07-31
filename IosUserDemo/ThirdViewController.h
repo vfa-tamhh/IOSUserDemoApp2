@@ -15,7 +15,8 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "DemoViewController.h"
 
-@interface ThirdViewController : UIViewController
+@interface ThirdViewController : DemoViewController
 
 @end

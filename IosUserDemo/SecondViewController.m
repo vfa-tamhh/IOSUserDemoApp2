@@ -36,7 +36,7 @@
                 }];
             }];
         } callbackError:^(NSError *error){
-            [Mbaas userError:EMAIL_PW_REGISTRATION_FAILURE error:error uiviewController:self];
+            [self userError:EMAIL_PW_REGISTRATION_FAILURE error:error];
         }];
     }
 }
@@ -46,9 +46,9 @@
         [Utils showAlertIn:self message:MESSAGE_ERROR_NOT_INPUT andOKHandler:nil];
     } else {
         [Mbaas signinByEmail:self.txtSigninEmail.text password:self.txtSigninPassword.text callbackOK:^(NCMBUser *user) {
-            [Mbaas userSuccess:EMAIL_PW_LOGIN_SUCCESS user:user uiviewController:self];
+            [self userSuccess:EMAIL_PW_LOGIN_SUCCESS user:user];
         } callbackFailure:^(NSError *error) {
-            [Mbaas userError:EMAIL_PW_LOGIN_FAILURE error:error uiviewController:self];
+            [self userError:EMAIL_PW_LOGIN_FAILURE error:error];
         }];
     }
 }

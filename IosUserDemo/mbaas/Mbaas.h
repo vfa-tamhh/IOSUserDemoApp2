@@ -39,11 +39,5 @@
       callbackFailure:(callbackUserError) callBackFailure;
 +(void) signinByAnonymousID:(callbackUserOk) callBackOk
             callbackFailure:(callbackUserError) callBackFailure;
-+(void) logout:(UIViewController *)controller;
-+(void) userSuccess:(NSString*)message
-               user:(NCMBUser*) u
-   uiviewController:(UIViewController *)controller;
-+(void) userError:(NSString*)message
-               error:(NSError*) err
-   uiviewController:(UIViewController *)controller;
++(void) logout;
 @end

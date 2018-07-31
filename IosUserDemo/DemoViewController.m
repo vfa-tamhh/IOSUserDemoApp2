@@ -14,36 +14,44 @@
  limitations under the License.
  */
 
-#import "ThirdViewController.h"
+#import "DemoViewController.h"
 #import "Utils.h"
-#import "Mbaas.h"
 #import "Constants.h"
 
-@interface ThirdViewController ()
+@interface DemoViewController ()
 
 @end
 
-@implementation ThirdViewController
-- (IBAction)SigninByAnonymousID:(id)sender {
-    [Mbaas signinByAnonymousID:^(NCMBUser *user) {
-        [self userSuccess:ANONYMOUS_LOGIN_SUCCESS user:user];
-    } callbackFailure:^(NSError *error) {
-        [self userError:ANONYMOUS_LOGIN_FAILURE error:error];
-    }];
-}
+@implementation DemoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+// 失敗
+-(void) userError:(NSString*)message
+            error:(NSError*) err{
+    NSString *errorDisplay = [NSString stringWithFormat: @"%@ %@", message, [err.userInfo objectForKey:@"NSLocalizedDescription"]];
+    [Utils showAlertIn:self message:errorDisplay andOKHandler:nil];
+}
 
+// 成功
+-(void) userSuccess:(NSString*)message user:(NCMBUser*) user{
+    /* 処理成功 */
+    NSString *displayMessage = [NSString stringWithFormat: @"%@ %@ %@", message, @" objectId: ", user.objectId];
+    [Utils showAlertIn:self message:displayMessage andOKHandler:^(){
+        [NCMBUser logOut];
+        [Utils showAlertIn:self message:LOGGED_OUT andOKHandler:^(){
+            [self loadView];
+        }];
+    }];
+    
+}
 /*
 #pragma mark - Navigation
 

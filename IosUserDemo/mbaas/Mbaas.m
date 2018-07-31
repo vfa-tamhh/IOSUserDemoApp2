@@ -154,34 +154,12 @@
     }];
 }
 /***** ログアウト *****/
-+(void) logout:(UIViewController *)controller{
++(void) logout{
     //show the progress bar
     [ProgressHUD show:LOADING_TITLE];
     // ログアウト
     [NCMBUser logOut];
     //hide the progress bar
     [ProgressHUD dismiss];
-}
-/********** コールバック **********/
-// 成功
-+(void) userSuccess:(NSString*)message
-               user:(NCMBUser*) u
-   uiviewController:(UIViewController *)controller{
-    /* 処理成功 */
-    NSString *displayMessage = [NSString stringWithFormat: @"%@ %@ %@", message, @" objectId: ", u.objectId];
-    [Utils showAlertIn:controller message:displayMessage andOKHandler:^(){
-        [NCMBUser logOut];
-        [Utils showAlertIn:controller message:LOGGED_OUT andOKHandler:^(){
-            [controller loadView];
-        }];
-    }];
-    
-}
-// 失敗
-+(void) userError:(NSString*)message
-            error:(NSError*) err
- uiviewController:(UIViewController *)controller{
-    NSString *errorDisplay = [NSString stringWithFormat: @"%@ %@", message, [err.userInfo objectForKey:@"NSLocalizedDescription"]];
-    [Utils showAlertIn:controller message:errorDisplay andOKHandler:nil];
 }
 @end

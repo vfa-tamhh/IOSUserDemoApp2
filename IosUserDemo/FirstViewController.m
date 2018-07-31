@@ -43,9 +43,9 @@
         [Utils showAlertIn:self message:MESSAGE_ERROR_PWD_DO_NOT_MATCH andOKHandler:nil];
     } else {
         [Mbaas signupByID:self.txtSignupId.text password:self.txtSignupPassword.text callbackOK:^(NCMBUser *user) {
-            [Mbaas userSuccess:LOGIN_SUCCESS user:user uiviewController:self];
+            [self userSuccess:LOGIN_SUCCESS user:user];
         } callbackFailure:^(NSError *error){
-            [Mbaas userError:ID_PW_LOGIN_FAILURE error:error uiviewController:self];
+            [self userError:ID_PW_LOGIN_FAILURE error:error];
         }];
     }
 }
@@ -55,9 +55,9 @@
         [Utils showAlertIn:self message:MESSAGE_ERROR_NOT_INPUT andOKHandler:nil];
     } else {
         [Mbaas signinByID:self.txtSigninId.text password:self.txtSigninPassword.text callbackOK:^(NCMBUser *user) {
-            [Mbaas userSuccess:LOGIN_SUCCESS user:user uiviewController:self];
+            [self userSuccess:LOGIN_SUCCESS user:user];
         } callbackFailure:^(NSError *error) {
-            [Mbaas userError:ID_PW_LOGIN_FAILURE error:error uiviewController:self];
+            [self userError:ID_PW_LOGIN_FAILURE error:error];
         }];
 
     }

@@ -15,8 +15,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "DemoViewController.h"
 
-@interface SecondViewController : UIViewController
+@interface SecondViewController : DemoViewController
 @property (weak, nonatomic) IBOutlet UITextField *txtSignupEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtSigninEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtSigninPassword;

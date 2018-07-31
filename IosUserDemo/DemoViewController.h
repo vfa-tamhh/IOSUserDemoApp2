@@ -15,15 +15,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "DemoViewController.h"
+#import "NCMB/NCMBUser.h"
 
-@interface FirstViewController : DemoViewController
-@property (weak, nonatomic) IBOutlet UITextField *txtSignupId;
-@property (weak, nonatomic) IBOutlet UITextField *txtSignupPassword;
-@property (weak, nonatomic) IBOutlet UITextField *txtSignupPasswordConfirm;
-@property (weak, nonatomic) IBOutlet UITextField *txtSigninId;
-@property (weak, nonatomic) IBOutlet UITextField *txtSigninPassword;
-
-
+@interface DemoViewController : UIViewController
+-(void) userError:(NSString*)message error:(NSError*) err;
+-(void) userSuccess:(NSString*)message user:(NCMBUser*) user;
 @end
-
