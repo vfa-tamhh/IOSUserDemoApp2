@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,7 @@
 		D28BFAEE20FED7A100C90712 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D28BFAED20FED7A100C90712 /* main.m */; };
 		D28BFAF620FED8A500C90712 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28BFAF520FED8A500C90712 /* ThirdViewController.m */; };
 		D2B733A121019179001F5614 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B733A021019179001F5614 /* Constants.m */; };
+		D2B9960D210FFBA70015F5F7 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9960C210FFBA70015F5F7 /* DemoViewController.m */; };
 		D2CC02EF20FF23970057FF55 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC02EE20FF23970057FF55 /* Utils.m */; };
 		D2CC02F320FF30930057FF55 /* Mbaas.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CC02F220FF30930057FF55 /* Mbaas.m */; };
 		F3B776320B0F975CA09CF5C6 /* libPods-IosUserDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 497792030AE3F32301CAAAF6 /* libPods-IosUserDemo.a */; };
@@ -41,6 +42,8 @@
 		D28BFAF520FED8A500C90712 /* ThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
 		D2B7339F21019179001F5614 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		D2B733A021019179001F5614 /* Constants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		D2B9960B210FFBA70015F5F7 /* DemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		D2B9960C210FFBA70015F5F7 /* DemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 		D2CC02ED20FF23970057FF55 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		D2CC02EE20FF23970057FF55 /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		D2CC02F120FF30930057FF55 /* Mbaas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mbaas.h; sourceTree = "<group>"; };
@@ -106,6 +109,8 @@
 				D2CC02EE20FF23970057FF55 /* Utils.m */,
 				D2B7339F21019179001F5614 /* Constants.h */,
 				D2B733A021019179001F5614 /* Constants.m */,
+				D2B9960B210FFBA70015F5F7 /* DemoViewController.h */,
+				D2B9960C210FFBA70015F5F7 /* DemoViewController.m */,
 			);
 			path = IosUserDemo;
 			sourceTree = "<group>";
@@ -161,11 +166,12 @@
 				TargetAttributes = {
 					D28BFAD720FED7A000C90712 = {
 						CreatedOnToolsVersion = 9.3.1;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = D28BFAD320FED7A000C90712 /* Build configuration list for PBXProject "IosUserDemo" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -245,6 +251,7 @@
 				D2B733A121019179001F5614 /* Constants.m in Sources */,
 				D28BFADD20FED7A000C90712 /* AppDelegate.m in Sources */,
 				D28BFAEE20FED7A100C90712 /* main.m in Sources */,
+				D2B9960D210FFBA70015F5F7 /* DemoViewController.m in Sources */,
 				D2CC02EF20FF23970057FF55 /* Utils.m in Sources */,
 				D28BFAE020FED7A000C90712 /* FirstViewController.m in Sources */,
 			);
@@ -388,12 +395,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 5F376X42B9;
 				INFOPLIST_FILE = IosUserDemo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Jimmy.IosUserDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -406,12 +411,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 5F376X42B9;
 				INFOPLIST_FILE = IosUserDemo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Jimmy.IosUserDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
